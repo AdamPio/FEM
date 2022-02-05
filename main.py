@@ -9,22 +9,25 @@ from MatrixHbc import MatrixHbc
 from MatrixP import MatrixP
 from MatrixC import MatrixC
 from Agregate import agregateC, agregateH, agregateHbc, agregateP
-from SolveTemp import SolveTemp
+from SolveTemp import calculateTemp
 from data import *
 
 
 def MES():
+    # Approximation
     rounded = 4
 
+    # Creating grid
     grid = Grid()
     grid.create(data.H, data.B, data.nH, data.nB)
-    grid.draw()
+    # grid.draw()
 
+    # Calculating ksi and eta
     ele4 = Element4()
     ele4.calculate(npc)
-    ele4.draw()
+    # ele4.draw()
 
-    count = 1
+    # Calculating every matrix for each element
     for element in grid.elements:
         # Calculate Jakob
         jakob = Jakob(element.ID, grid.nodes, ele4, npc)
@@ -46,7 +49,7 @@ def MES():
         C.calculate(jakob, ele4, data.ro, data.cp, data.npc)
         element.C = C.C
 
-        # # Draw
+        # # Draw each matrix
         # jakob.draw()
         # H.drawH()
         # print(element.ID)
@@ -81,8 +84,9 @@ def MES():
         print(x)
 
     print("\nTemperatura")
-    solved = SolveTemp(len(grid.nodes), P_agr, C_agr, H_agr, Hbc_agr)
-    solved.calculate()
+    # solved = SolveTemp(len(grid.nodes), P_agr, C_agr, H_agr, Hbc_agr)
+    # solved.calculate()
+    calculateTemp(len(grid.nodes), P_agr, C_agr, H_agr, Hbc_agr)
 
 
 if __name__ == '__main__':
