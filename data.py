@@ -1,0 +1,13 @@
+H = 0.1
+B = 0.1
+nH = 4
+nB = 4
+npc = 2
+conductivity = 25
+alpha = 300 # heat coeff
+cp = 700 # specific heat
+ro = 7800 # density
+initT = 100 # Initial temp
+aT = 1200 # Ambient temp
+simTime = 500  # Simulation time
+simStep = 50  # Simulation step
